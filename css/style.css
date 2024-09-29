@@ -1,0 +1,48 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+
+  background-color: #110101;
+  color: #e6e6e6;
+}
+
+.board {
+  display: flex;
+  width: 325px;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.sqr {
+  width: 30%;
+  aspect-ratio: 1/1;
+
+  font-size: 64px;
+  text-align: center;
+  height: 100px;
+  background-color: #640f63;
+  border: 2px solid #540552;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.sqr:hover {
+  background-color: #e6e6e6;
+}
+
+#message {
+  font-size: 40px;
+  margin-top: 20px;
+  color: #e6e6e6;
+}
+
+button {
+  padding: 20px 20px 20px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 8px;
+}

@@ -48,6 +48,7 @@ const placePiece = (index) => {
   console.log(board)
 }
 const checkForWinner = () => {
+  winningCombo = null
   winningCombos.forEach((combo) => {
     const [a, b, c] = combo
     if (board[a] !== '' && board[a] === board[b] && board[a] === board[c]) {
@@ -57,38 +58,54 @@ const checkForWinner = () => {
   })
   console.log(winner)
 }
+
 const checkForTie = () => {
   if (winner) return
-  tie = !board.includes('')
+
+  tie = board.every((cell) => cell !== '') //array iterator lab
   console.log(tie)
 }
+
 const switchPlayerTurn = () => {
   if (winner) return
-  turn = turn === 'X' ? 'O' : 'X' // condition ? expressionTrue : expressionFalse
+
+  if (turn === 'X') {
+    turn = 'O'
+  } else {
+    turn = 'X'
+  }
+
   console.log(turn)
 }
+
 const render = () => {
   updateBoard()
   updateMessage()
 }
+
 const updateBoard = () => {
   board.forEach((cell, index) => {
     const square = squareEls[index]
-    square.textContent = cell // Update the text content displayed in each square element based on the values stored in the board array.
-    if (winner && winningCombo.includes(index)) {
-      square.style.backgroundColor = 'red'
+    square.textContent = cell
+
+    if (winner && winningCombo) {
+      for (let i = 0; i < winningCombo.length; i++) {
+        if (winningCombo[i] === index) {
+          square.style.backgroundColor = 'red'
+        }
+      }
     } else {
       square.style.backgroundColor = ''
     }
+
     if (cell === 'X') {
       square.style.color = 'pink'
     } else if (cell === 'O') {
       square.style.color = 'blue'
-    } else {
-      square.style.color = ''
     }
   })
 }
+
 const updateMessage = () => {
   if (winner) {
     messageEl.textContent = `Player ${turn} wins!`
